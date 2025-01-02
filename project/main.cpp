@@ -8,7 +8,8 @@
 //* loops
 #include <Engine/GameLoop/EngineGameLoop.h>
 #include <Engine/GameLoop/ConsoleGameLoop.h>
-#include <Demo/GameLoop/DemoGameLoop.h>
+//#include <Demo/GameLoop/DemoGameLoop.h>
+#include <Game/GameLoop/ActionGameLoop.h>
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 // メイン関数
@@ -18,7 +19,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	std::unique_ptr<GameLoop::Collection> collection = std::make_unique<GameLoop::Collection>();
 	collection->Push<EngineGameLoop>();
 	collection->Push<ConsoleGameLoop>();
-	collection->Push<DemoGameLoop>();
+	collection->Push<ActionGameLoop>();
 
 	collection->Run();
 

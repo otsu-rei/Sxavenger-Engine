@@ -128,6 +128,10 @@
     <ClCompile Include="Demo\Objects\ChessBoard.cpp" />
     <ClCompile Include="Demo\DemoModelRender.cpp" />
     <ClCompile Include="Demo\Objects\DemoHuman.cpp" />
+    <ClCompile Include="Game\Entity\Player\Player.cpp" />
+    <ClCompile Include="Game\Entity\Player\PlayerStateRoot.cpp" />
+    <ClCompile Include="Game\Entity\Player\BasePlayerState.cpp" />
+    <ClCompile Include="Game\GameLoop\ActionGameLoop.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\System\Window\Window.h" />
@@ -261,5 +265,9 @@
     <ClInclude Include="Demo\Objects\ChessBoard.h" />
     <ClInclude Include="Demo\DemoModelRender.h" />
     <ClInclude Include="Demo\Objects\DemoHuman.h" />
+    <ClInclude Include="Game\Entity\Player\Player.h" />
+    <ClInclude Include="Game\Entity\Player\PlayerStateRoot.h" />
+    <ClInclude Include="Game\Entity\Player\BasePlayerState.h" />
+    <ClInclude Include="Game\GameLoop\ActionGameLoop.h" />
   </ItemGroup>
 </Project>
