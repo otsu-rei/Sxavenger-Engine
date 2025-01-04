@@ -47,7 +47,7 @@ void PlayerStateRoot::MoveGamepad() {
 	// 移動
 	Vector2f move = direction * speed_;
 
-	player_->GetTransform().translate += Vector3f(move.x, 0.0f, move.y) * Performance::GetDeltaTime<TimeUnit::s>().time;
+	player_->GetTransform().translate += Vector3f(move.x, 0.0f, move.y) * SxavengerSystem::GetDeltaTime().time;
 }
 
 void PlayerStateRoot::MoveKeyboard() {
@@ -73,7 +73,7 @@ void PlayerStateRoot::MoveKeyboard() {
 	// 移動
 	Vector2f move = direction * speed_;
 
-	player_->GetTransform().translate += Vector3f(move.x, 0.0f, move.y) * Performance::GetDeltaTime<TimeUnit::s>().time;
+	player_->GetTransform().translate += Vector3f(move.x, 0.0f, move.y) * SxavengerSystem::GetDeltaTime().time;
 }
 
 
