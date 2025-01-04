@@ -9,6 +9,9 @@
 //* engine
 #include <Engine/System/Runtime/Input/Input.h>
 
+//* lib
+#include <Lib/Geometry/Quaternion.h>
+
 ////////////////////////////////////////////////////////////////////////////////////////////
 // PlayerStateRoot class
 ////////////////////////////////////////////////////////////////////////////////////////////
@@ -39,12 +42,18 @@ private:
 
 	float speed_ = 1.0f;
 
+	//* member *//
+
+	Quaternion target_ = Quaternion::Identity();
+
 	//=========================================================================================
 	// private methods
 	//=========================================================================================
 
 	void MoveGamepad();
 	void MoveKeyboard();
+
+	void UpdateRotation();
 
 	// HACK: 移動を扱う
 };

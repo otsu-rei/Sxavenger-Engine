@@ -9,6 +9,10 @@
 //* engine
 #include <Engine/System/Runtime/Performance/Performance.h>
 
+//* lib
+#include <Lib/Geometry/VectorComparison.h>
+#include <Lib/MyMath.h>
+
 ////////////////////////////////////////////////////////////////////////////////////////////
 // PlayerStateRoot class methods
 ////////////////////////////////////////////////////////////////////////////////////////////
@@ -20,8 +24,14 @@ void PlayerStateRoot::Term() {
 }
 
 void PlayerStateRoot::Update() {
- 	MoveGamepad();
-	MoveKeyboard();
+	if (player_->gamepad_->IsConnect()) {
+		MoveGamepad(); //!< gamepadが接続されている
+
+	} else {
+		MoveKeyboard();
+	}
+
+	player_->GetTransform().rotate = Slerp(player_->GetTransform().rotate, target_, 0.2f);
 }
 
 void PlayerStateRoot::MoveGamepad() {
@@ -47,7 +57,16 @@ void PlayerStateRoot::MoveGamepad() {
 	// 移動
 	Vector2f move = direction * speed_;
 
-	player_->GetTransform().translate += Vector3f(move.x, 0.0f, move.y) * SxavengerSystem::GetDeltaTime().time;
+	player_->GetTransform().translate += Vector3f{ move.x, 0.0f, move.y } * SxavengerSystem::GetDeltaTime().time;
+
+	// animation stateの処理
+	if (Any(direction != kOrigin2<float>)) {
+		player_->animationState_ = Player::AnimationState::Walking;
+		target_ = ToQuaternion(CalculateEuler({ direction.x, 0.0f, direction.y }));
+
+	} else {
+		player_->animationState_ = Player::AnimationState::Idle;
+	}
 }
 
 void PlayerStateRoot::MoveKeyboard() {
@@ -74,6 +93,19 @@ void PlayerStateRoot::MoveKeyboard() {
 	Vector2f move = direction * speed_;
 
 	player_->GetTransform().translate += Vector3f(move.x, 0.0f, move.y) * SxavengerSystem::GetDeltaTime().time;
+
+	// animation stateの処理
+	if (Any(direction != kOrigin2<float>)) {
+		player_->animationState_ = Player::AnimationState::Walking;
+		target_ = ToQuaternion(CalculateEuler({direction.x, 0.0f, direction.y}));
+
+	} else {
+		player_->animationState_ = Player::AnimationState::Idle;
+	}
+}
+
+void PlayerStateRoot::UpdateRotation() {
+
 }
 
 

@@ -132,6 +132,7 @@
     <ClCompile Include="Engine\System\Runtime\Performance\TimePoint.cpp" />
     <ClCompile Include="Engine\System\Runtime\Performance\Performance.cpp" />
     <ClCompile Include="Engine\System\Runtime\Performance\RunTimeTracker.cpp" />
+    <ClCompile Include="Game\Entity\Enemy\Enemy.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\System\Window\Window.h" />
@@ -269,5 +270,6 @@
     <ClInclude Include="Engine\System\Runtime\Performance\TimePoint.h" />
     <ClInclude Include="Engine\System\Runtime\Performance\Performance.h" />
     <ClInclude Include="Engine\System\Runtime\Performance\RunTimeTracker.h" />
+    <ClInclude Include="Game\Entity\Enemy\Enemy.h" />
   </ItemGroup>
 </Project>

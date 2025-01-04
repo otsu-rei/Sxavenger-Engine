@@ -9,7 +9,9 @@
 
 //* engine
 #include <Engine/System/Runtime/Input/Input.h>
-#include <Engine/Module/Behavior/ModelBehavior.h>
+#include <Engine/Asset/SxavengerAsset.h>
+#include <Engine/Module/Behavior/AnimationBehavior.h>
+#include <Engine/Module/Skeleton/SkeletonMesh.h>
 
 //* c++
 #include <memory>
@@ -19,7 +21,18 @@
 // Player class
 ////////////////////////////////////////////////////////////////////////////////////////////
 class Player
-	: public ModelBehavior {
+	: public AnimationBehavior {
+public:
+
+	////////////////////////////////////////////////////////////////////////////////////////////
+	// Animation enum class
+	////////////////////////////////////////////////////////////////////////////////////////////
+	enum AnimationState : uint8_t {
+		Idle,
+		Walking,
+	};
+	static const uint8_t kAnimationCount = AnimationState::Walking + 1;
+
 public:
 
 	//=========================================================================================
@@ -34,6 +47,8 @@ public:
 	void Term();
 
 	void Update();
+
+	void SetAnimationState();
 
 private:
 
@@ -51,11 +66,22 @@ private:
 	std::unique_ptr<BasePlayerState>                state_        = nullptr;
 	std::optional<std::unique_ptr<BasePlayerState>> requestState_ = std::nullopt;
 
+	//* animation *//
+
+	std::array<std::shared_ptr<Animator>, kAnimationCount> animators_;
+	AnimationState animationState_ = AnimationState::Idle;
+
+	TimePointf<TimeUnit::second> time_;
+
+	std::unique_ptr<SkeletonMesh> skeleton_;
+
 	//=========================================================================================
 	// private methods
 	//=========================================================================================
 
 	void UpdateState();
+
+	void UpdateAnimation();
 	
 public:
 	////////////////////////////////////////////////////////////////////////////////////////////
