@@ -6,11 +6,8 @@
 //* state
 #include "BasePlayerState.h"
 
-//* engine
-#include <Engine/System/Runtime/Input/Input.h>
-
 //* lib
-#include <Lib/Geometry/Quaternion.h>
+#include <Lib/Geometry/Vector2.h>
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 // PlayerStateRoot class
@@ -40,20 +37,20 @@ private:
 
 	//* paraemter *//
 
-	float speed_ = 1.0f;
+	float speed_    = 1.0f;
+	float runSpeed_ = 3.0f;
 
-	//* member *//
-
-	Quaternion target_ = Quaternion::Identity();
+	Vector2f rotationDelta_ = { 0.02f, 0.01f };
 
 	//=========================================================================================
 	// private methods
 	//=========================================================================================
 
+	void RotateCameraGamepad();
 	void MoveGamepad();
-	void MoveKeyboard();
+	void ActionGamepad();
 
-	void UpdateRotation();
+	void MoveKeyboard();
 
 	// HACK: 移動を扱う
 };

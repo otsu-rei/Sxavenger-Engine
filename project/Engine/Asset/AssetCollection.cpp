@@ -11,7 +11,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////
 
 void AssetCollection::Init() {
-	AsyncAssetThreadCollection::Init(2);
+	AsyncAssetThreadCollection::Init(4);
 
 	root_.first = "root";
 }

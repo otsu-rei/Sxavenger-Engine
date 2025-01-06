@@ -133,6 +133,12 @@
     <ClCompile Include="Engine\System\Runtime\Performance\Performance.cpp" />
     <ClCompile Include="Engine\System\Runtime\Performance\RunTimeTracker.cpp" />
     <ClCompile Include="Game\Entity\Enemy\Enemy.cpp" />
+    <ClCompile Include="Game\Object\Ground.cpp" />
+    <ClCompile Include="Game\Entity\Player\PlayerStatePunch.cpp" />
+    <ClCompile Include="Game\Entity\Player\PlayerStateRolling.cpp" />
+    <ClCompile Include="Game\Entity\Player\PlayerStateHook.cpp" />
+    <ClCompile Include="Game\Entity\Player\PlayerStateElbow.cpp" />
+    <ClCompile Include="Game\Entity\Player\PlayerStateStraight.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\System\Window\Window.h" />
@@ -271,5 +277,11 @@
     <ClInclude Include="Engine\System\Runtime\Performance\Performance.h" />
     <ClInclude Include="Engine\System\Runtime\Performance\RunTimeTracker.h" />
     <ClInclude Include="Game\Entity\Enemy\Enemy.h" />
+    <ClInclude Include="Game\Object\Ground.h" />
+    <ClInclude Include="Game\Entity\Player\PlayerStatePunch.h" />
+    <ClInclude Include="Game\Entity\Player\PlayerStateRolling.h" />
+    <ClInclude Include="Game\Entity\Player\PlayerStateHook.h" />
+    <ClInclude Include="Game\Entity\Player\PlayerStateElbow.h" />
+    <ClInclude Include="Game\Entity\Player\PlayerStateStraight.h" />
   </ItemGroup>
 </Project>

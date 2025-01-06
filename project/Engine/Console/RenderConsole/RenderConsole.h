@@ -92,6 +92,10 @@ public:
 	void SetManipulateImGuiCommand();
 	void Manipulate(ImGuizmo::OPERATION operation, ImGuizmo::MODE mode, TransformComponent* component);
 
+	//* getter *//
+
+	Camera3d* GetGameCamera() const { return gameCamera_.get(); }
+
 protected:
 
 	//=========================================================================================

@@ -42,6 +42,7 @@ void main(uint3 dispatchThreadId : SV_DispatchThreadID) {
 		return;
 	}
 
+//#define _LAMBERT
 #ifdef _LAMBERT
 	float3 lightDirection = normalize(float3(0.0f, 1.0f, 0.0f));
 
