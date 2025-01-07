@@ -10,6 +10,9 @@
 #include <Engine/System/Runtime/Performance/TimePoint.h>
 #include <Engine/Module/Collider/Collider.h>
 
+//* game
+#include "PlayerAttackCollider.h"
+
 //* c++
 #include <memory>
 #include <optional>
@@ -51,7 +54,7 @@ private:
 
 	//* collider *//
 
-	std::unique_ptr<Collider> attackCollider_;
+	std::unique_ptr<PlayerAttackCollider> attackCollider_;
 
 	//=========================================================================================
 	// private methods

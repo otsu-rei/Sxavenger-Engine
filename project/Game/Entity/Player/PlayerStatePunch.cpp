@@ -14,13 +14,14 @@ void PlayerStatePunch::Init() {
 	duration_ = player_->animators_[Player::AnimationState::Punching]->GetDurationTime(0);
 	player_->SetAnimationState(Player::AnimationState::Punching);
 
-	attackCollider_ = std::make_unique<Collider>();
+	attackCollider_ = std::make_unique<PlayerAttackCollider>();
 	attackCollider_->SetToCollection();
 	attackCollider_->SetTypeId(ColliderType::kPlayerAttack);
 	attackCollider_->SetColliderBoundingSphere({ 0.4f });
 	attackCollider_->SetParent(player_);
 	attackCollider_->GetTransform().translate = { 0.0f, 1.2f, 0.8f };
 	attackCollider_->UpdateMatrix();
+	attackCollider_->strength_ = AttackStrength::Light;
 }
 
 void PlayerStatePunch::Term() {

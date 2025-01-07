@@ -10,9 +10,9 @@
 #include <Engine/System/Runtime/Performance/TimePoint.h>
 
 ////////////////////////////////////////////////////////////////////////////////////////////
-// EnemyStateReactionLight class
+// EnemyStateStraight class
 ////////////////////////////////////////////////////////////////////////////////////////////
-class EnemyStateReactionLight
+class EnemyStateStraight
 	: public BaseEnemyState {
 public:
 
@@ -20,8 +20,8 @@ public:
 	// public methods
 	//=========================================================================================
 
-	EnemyStateReactionLight(Enemy* enemy) : BaseEnemyState(enemy) {};
-	~EnemyStateReactionLight() = default;
+	EnemyStateStraight(Enemy* enemy) : BaseEnemyState(enemy) {};
+	~EnemyStateStraight() = default;
 
 	void Init() override;
 
@@ -39,5 +39,6 @@ private:
 
 	TimePointf<TimeUnit::second> time_;
 	TimePointf<TimeUnit::second> duration_;
+
 
 };

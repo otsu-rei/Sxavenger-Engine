@@ -25,7 +25,7 @@ void Ground::Init() {
 	ModelBehavior::GetTransform().translate = { 0.0f, -0.1f, 0.0f };
 	ModelBehavior::UpdateMatrix();
 
-	ModelBehavior::MaterialComponent::uvTransform_.scale = { scale, scale };
+	ModelBehavior::MaterialComponent::uvTransform_.scale = { scale * 2, scale * 2 };
 	ModelBehavior::MaterialComponent::Transfer();
 
 }

@@ -7,12 +7,15 @@
 #include "BaseEnemyState.h"
 
 //* engine
-#include <Engine/System/Runtime/Performance/TimePoint.h>
+#include <Engine/Module/Collider/Collider.h>
+
+//* c++
+#include <memory>
 
 ////////////////////////////////////////////////////////////////////////////////////////////
-// EnemyStateReactionLight class
+// EnemyStateApproach class
 ////////////////////////////////////////////////////////////////////////////////////////////
-class EnemyStateReactionLight
+class EnemyStateApproach
 	: public BaseEnemyState {
 public:
 
@@ -20,8 +23,8 @@ public:
 	// public methods
 	//=========================================================================================
 
-	EnemyStateReactionLight(Enemy* enemy) : BaseEnemyState(enemy) {};
-	~EnemyStateReactionLight() = default;
+	EnemyStateApproach(Enemy* enemy) : BaseEnemyState(enemy) {};
+	~EnemyStateApproach() = default;
 
 	void Init() override;
 
@@ -35,9 +38,10 @@ private:
 	// private variables
 	//=========================================================================================
 
-	//* time *//
+	float speed_ = 0.2f;
 
-	TimePointf<TimeUnit::second> time_;
-	TimePointf<TimeUnit::second> duration_;
+	//* collider *//
+
+	std::unique_ptr<Collider> approachCollider_;
 
 };

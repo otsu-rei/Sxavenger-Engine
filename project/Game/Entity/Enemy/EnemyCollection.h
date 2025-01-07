@@ -3,31 +3,33 @@
 //-----------------------------------------------------------------------------------------
 // include
 //-----------------------------------------------------------------------------------------
-//* state
-#include "BaseEnemyState.h"
+//* enemy
+#include "Enemy.h"
 
-//* engine
-#include <Engine/System/Runtime/Performance/TimePoint.h>
+//* c++
+#include <array>
 
 ////////////////////////////////////////////////////////////////////////////////////////////
-// EnemyStateReactionLight class
+// EnemyCollection class
 ////////////////////////////////////////////////////////////////////////////////////////////
-class EnemyStateReactionLight
-	: public BaseEnemyState {
+class EnemyCollection
+	: public BaseBehavior {
 public:
 
 	//=========================================================================================
 	// public methods
 	//=========================================================================================
 
-	EnemyStateReactionLight(Enemy* enemy) : BaseEnemyState(enemy) {};
-	~EnemyStateReactionLight() = default;
+	EnemyCollection()  = default;
+	~EnemyCollection() = default;
 
-	void Init() override;
+	void Init();
 
-	void Term() override;
+	void Update();
 
-	void Update() override;
+	void Draw();
+
+	void SetAttributeImGui();
 
 private:
 
@@ -35,9 +37,6 @@ private:
 	// private variables
 	//=========================================================================================
 
-	//* time *//
-
-	TimePointf<TimeUnit::second> time_;
-	TimePointf<TimeUnit::second> duration_;
+	std::array<std::unique_ptr<Enemy>, 4> enemies_;
 
 };

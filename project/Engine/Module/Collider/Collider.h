@@ -25,6 +25,7 @@ enum ColliderType {
 	kPlayer,
 	kEnemy,
 	kPlayerAttack,
+	kEnemyApproach,
 
 	kCountOfColliderType
 };
@@ -110,6 +111,8 @@ public:
 	void SetTargetId(ColliderType type, bool isEnabled = true) { targetId_.set(static_cast<uint32_t>(type), isEnabled); }
 
 	bool CheckCollisionTarget(const Collider* const other) const;
+
+	bool CheckTypeId(ColliderType type) const { return typeId_.test(static_cast<uint32_t>(type)); }
 
 	//* active method *//
 

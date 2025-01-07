@@ -14,13 +14,14 @@ void PlayerStateElbow::Init() {
 	duration_ = player_->animators_[Player::AnimationState::Elbow]->GetDurationTime(0);
 	player_->SetAnimationState(Player::AnimationState::Elbow);
 
-	attackCollider_ = std::make_unique<Collider>();
+	attackCollider_ = std::make_unique<PlayerAttackCollider>();
 	attackCollider_->SetToCollection();
 	attackCollider_->SetTypeId(ColliderType::kPlayerAttack);
 	attackCollider_->SetColliderBoundingSphere({ 0.4f });
 	attackCollider_->SetParent(player_);
 	attackCollider_->GetTransform().translate = { 0.2f, 1.2f, 0.8f };
 	attackCollider_->UpdateMatrix();
+	attackCollider_->strength_ = AttackStrength::Light;
 
 }
 
@@ -51,7 +52,7 @@ void PlayerStateElbow::ActionGamepad() {
 	}
 
 	if (player_->gamepad_->IsTrigger(GamepadButtonId::BUTTON_B)) {
-		nextAttackState_ = std::make_unique<PlayerStateStraight>(player_);
+		nextAttackState_ = std::make_unique<PlayerStateKick>(player_);
 	}
 }
 

@@ -6,6 +6,7 @@
 //* c++
 #include <concepts>
 #include <cmath>
+#include <algorithm>
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 // TimeUtil enum class
@@ -139,8 +140,18 @@ constexpr TimePoint<_Unit, _Value> operator-(const TimePoint<_Unit, _Value>& lef
 ////////////////////////////////////////////////////////////////////////////////////////////
 
 template <TimeUnit _Unit, std::floating_point _Value>
-TimePoint<_Unit, _Value> Mod(TimePoint<_Unit, _Value> left, TimePoint<_Unit, _Value> right) {
-	return { std::fmod(left.time, right.time) };
+TimePoint<_Unit, _Value> Mod(TimePoint<_Unit, _Value> x, TimePoint<_Unit, _Value> y) {
+	return { std::fmod(x.time, y.time) };
+}
+
+template <TimeUnit _Unit, std::floating_point _Value>
+TimePoint<_Unit, _Value> Min(TimePoint<_Unit, _Value> x, TimePoint<_Unit, _Value> y) {
+	return { std::min(x.time, y.time) };
+}
+
+template <TimeUnit _Unit, std::floating_point _Value>
+TimePoint<_Unit, _Value> Max(TimePoint<_Unit, _Value> x, TimePoint<_Unit, _Value> y) {
+	return { std::max(x.time, y.time) };
 }
 
 //=========================================================================================

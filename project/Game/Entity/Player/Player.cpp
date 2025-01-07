@@ -48,7 +48,6 @@ void Player::Init() {
 	animators_[AnimationState::Punching] = SxavengerAsset::TryImportPtr<Animator>("asset/model/sample/punching.gltf").lock();
 	animators_[AnimationState::Hooking]  = SxavengerAsset::TryImportPtr<Animator>("asset/model/sample/hooking.gltf").lock();
 	animators_[AnimationState::Elbow]    = SxavengerAsset::TryImportPtr<Animator>("asset/model/sample/elbow.gltf").lock();
-	animators_[AnimationState::Straight] = SxavengerAsset::TryImportPtr<Animator>("asset/model/sample/straight.gltf").lock();
 	animators_[AnimationState::Kick]	 = SxavengerAsset::TryImportPtr<Animator>("asset/model/sample/kick.gltf").lock();
 
 	//std::for_each(animators_.begin(), animators_.end(), [](auto& animator) { SxavengerAsset::PushTask(animator); });
@@ -73,6 +72,22 @@ void Player::Init() {
 	hitCollider_->SetParent(this);
 	hitCollider_->GetTransform().translate = { 0.0f, 1.0f, 0.0f };
 	hitCollider_->SetTypeId(ColliderType::kPlayer);
+
+	dof_ = std::make_unique<VisualDoF>();
+	dof_->Init();
+	dof_->SetToConsole();
+	dof_->GetParameter().f           = 30.0f;
+	dof_->GetParameter().focusLength = 5.0f;
+
+
+}
+
+void Player::Init(const QuaternionTransform& transform) {
+	Init();
+	ModelBehavior::GetTransform() = transform;
+	ModelBehavior::UpdateMatrix();
+	hitCollider_->UpdateMatrix();
+	UpdateCamera();
 }
 
 void Player::Term() {
@@ -143,7 +158,7 @@ void Player::UpdateAnimation() {
 void Player::UpdateCamera() {
 	pivot_ = GetPosition();
 	pivotRotation_.x = std::fmod(pivotRotation_.x, pi_v * 2.0f);
-	pivotRotation_.y = std::clamp(pivotRotation_.y, 0.0f, pi_v / 16.0f);
+	pivotRotation_.y = std::clamp(pivotRotation_.y, 0.0f, pi_v / 14.0f);
 
 	Quaternion rotate
 		= MakeAxisAngle({ 0.0f, 1.0f, 0.0f }, pivotRotation_.x)

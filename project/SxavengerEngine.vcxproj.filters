@@ -138,12 +138,15 @@
     <ClCompile Include="Game\Entity\Player\PlayerStateRolling.cpp" />
     <ClCompile Include="Game\Entity\Player\PlayerStateHook.cpp" />
     <ClCompile Include="Game\Entity\Player\PlayerStateElbow.cpp" />
-    <ClCompile Include="Game\Entity\Player\PlayerStateStraight.cpp" />
     <ClCompile Include="Game\Entity\Player\PlayerStateKick.cpp" />
     <ClCompile Include="Game\Entity\Enemy\EnemyStateRoot.cpp" />
     <ClCompile Include="Game\Entity\Enemy\BaseEnemyState.cpp" />
     <ClCompile Include="Game\Entity\Enemy\EnemyStateReactionLight.cpp" />
     <ClCompile Include="Game\Entity\Enemy\EnemyStateReactionHeavy.cpp" />
+    <ClCompile Include="Game\Entity\Enemy\EnemyStateKnock.cpp" />
+    <ClCompile Include="Game\Entity\Enemy\EnemyStateApproach.cpp" />
+    <ClCompile Include="Game\Entity\Enemy\EnemyStateStraight.cpp" />
+    <ClCompile Include="Game\Entity\Enemy\EnemyCollection.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\System\Window\Window.h" />
@@ -287,12 +290,15 @@
     <ClInclude Include="Game\Entity\Player\PlayerStateRolling.h" />
     <ClInclude Include="Game\Entity\Player\PlayerStateHook.h" />
     <ClInclude Include="Game\Entity\Player\PlayerStateElbow.h" />
-    <ClInclude Include="Game\Entity\Player\PlayerStateStraight.h" />
     <ClInclude Include="Game\Entity\Player\PlayerStateKick.h" />
     <ClInclude Include="Game\Entity\Enemy\EnemyStateRoot.h" />
     <ClInclude Include="Game\Entity\Enemy\BaseEnemyState.h" />
     <ClInclude Include="Game\Entity\Enemy\EnemyStateReactionLight.h" />
     <ClInclude Include="Game\Entity\Player\PlayerAttackCollider.h" />
     <ClInclude Include="Game\Entity\Enemy\EnemyStateReactionHeavy.h" />
+    <ClInclude Include="Game\Entity\Enemy\EnemyStateKnock.h" />
+    <ClInclude Include="Game\Entity\Enemy\EnemyStateApproach.h" />
+    <ClInclude Include="Game\Entity\Enemy\EnemyStateStraight.h" />
+    <ClInclude Include="Game\Entity\Enemy\EnemyCollection.h" />
   </ItemGroup>
 </Project>

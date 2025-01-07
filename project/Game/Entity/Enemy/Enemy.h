@@ -6,8 +6,11 @@
 //* state
 #include "BaseEnemyState.h"
 #include "EnemyStateRoot.h"
+#include "EnemyStateApproach.h"
+#include "EnemyStateStraight.h"
 #include "EnemyStateReactionLight.h"
 #include "EnemyStateReactionHeavy.h"
+#include "EnemyStateKnock.h"
 
 //* engine
 #include <Engine/Asset/SxavengerAsset.h>
@@ -31,11 +34,15 @@ public:
 	////////////////////////////////////////////////////////////////////////////////////////////
 	enum AnimationState : uint8_t {
 		FightingIdle,
+		Approach,
+		Straight,
 		
 		ReactionLight,
 		ReactionHeavy,
+
+		Knock,
 	};
-	static const uint8_t kAnimationCount = AnimationState::ReactionHeavy + 1;
+	static const uint8_t kAnimationCount = AnimationState::Knock + 1;
 
 public:
 
@@ -47,6 +54,7 @@ public:
 	~Enemy() = default;
 
 	void Init();
+	void Init(const QuaternionTransform& transform);
 
 	void Update();
 
@@ -54,11 +62,23 @@ public:
 
 	void OnCollisionEnter(_MAYBE_UNUSED Collider* const target);
 
+	void DrawSystematic(_MAYBE_UNUSED const SxavGraphicsFrame* frame) override;
+
+	void SetTarget(Collider* target) { target_ = target; }
+
+	void SetAttributeImGui() override;
+
 private:
 
 	//=========================================================================================
 	// private variables
 	//=========================================================================================
+
+	//* visual *//
+
+	std::shared_ptr<Texture> texture_ = nullptr;
+
+	//* animation *//
 
 	std::array<std::shared_ptr<Animator>, kAnimationCount> animators_;
 
@@ -77,6 +97,15 @@ private:
 	std::unique_ptr<BaseEnemyState>                state_        = nullptr;
 	std::optional<std::unique_ptr<BaseEnemyState>> requestState_ = std::nullopt;
 
+	//* hp *//
+
+	float hp_ = 12.0f;
+
+	//* target *//
+
+	Collider* target_ = nullptr;
+	//! targetになるcollider
+
 	//* collider *//
 
 	std::unique_ptr<Collider> hitCollider_;
@@ -94,6 +123,9 @@ public:
 	// friend
 	////////////////////////////////////////////////////////////////////////////////////////////
 	friend EnemyStateRoot;
+	friend EnemyStateApproach;
+	friend EnemyStateStraight;
 	friend EnemyStateReactionLight;
 	friend EnemyStateReactionHeavy;
+	friend EnemyStateKnock;
 };

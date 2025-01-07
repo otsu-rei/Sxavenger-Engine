@@ -10,7 +10,6 @@
 #include "PlayerStatePunch.h"
 #include "PlayerStateHook.h"
 #include "PlayerStateElbow.h"
-#include "PlayerStateStraight.h"
 #include "PlayerStateKick.h"
 
 //* engine
@@ -20,6 +19,7 @@
 #include <Engine/Module/Camera/Camera3d.h>
 #include <Engine/Module/Skeleton/SkeletonMesh.h>
 #include <Engine/Module/Collider/Collider.h>
+#include <Engine/Module/VisualLayer/VisualDoF.h>
 
 //* c++
 #include <memory>
@@ -43,7 +43,6 @@ public:
 		Punching,
 		Hooking,
 		Elbow,
-		Straight,
 		Kick,
 	};
 	static const uint8_t kAnimationCount = AnimationState::Kick + 1;
@@ -58,6 +57,7 @@ public:
 	~Player() = default;
 
 	void Init();
+	void Init(const QuaternionTransform& transform);
 
 	void Term();
 
@@ -114,6 +114,10 @@ private:
 
 	std::unique_ptr<Collider> hitCollider_;
 
+	//* visual
+
+	std::unique_ptr<VisualDoF> dof_;
+
 	//=========================================================================================
 	// private methods
 	//=========================================================================================
@@ -133,6 +137,5 @@ public:
 	friend PlayerStatePunch;
 	friend PlayerStateHook;
 	friend PlayerStateElbow;
-	friend PlayerStateStraight;
 	friend PlayerStateKick;
 };

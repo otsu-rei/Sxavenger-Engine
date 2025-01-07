@@ -10,6 +10,9 @@
 #include <Engine/System/Runtime/Performance/TimePoint.h>
 #include <Engine/Module/Collider/Collider.h>
 
+//* game
+#include "PlayerAttackCollider.h"
+
 //* c++
 #include <memory>
 #include <optional>
@@ -50,7 +53,7 @@ private:
 	std::optional<std::unique_ptr<BasePlayerState>> nextAttackState_ = std::nullopt; //!< 次の攻撃状態
 	//* nullptrの場合はRootに戻る
 
-	std::unique_ptr<Collider> attackCollider_;
+	std::unique_ptr<PlayerAttackCollider> attackCollider_;
 
 	//=========================================================================================
 	// private methods

@@ -8,6 +8,10 @@
 
 //* engine
 #include <Engine/System/Runtime/Performance/TimePoint.h>
+#include <Engine/Module/Collider/Collider.h>
+
+//* game
+#include "PlayerAttackCollider.h"
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 // PlayerStateRolling class
@@ -39,6 +43,10 @@ private:
 
 	TimePointf<TimeUnit::second> time_;
 	TimePointf<TimeUnit::second> duration_;
+
+	//* collider *//
+
+	std::unique_ptr<PlayerAttackCollider> attackCollider_;
 
 	//=========================================================================================
 	// private methods
