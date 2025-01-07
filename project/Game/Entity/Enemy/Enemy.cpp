@@ -27,6 +27,8 @@ void Enemy::Init() {
 	SxavengerAsset::PushTask(AnimationBehavior::model_.value().Lock());
 	AnimationBehavior::model_.value().Lock()->WaitComplete();
 
+	AnimationBehavior::GetTransform().rotate = MakeAxisAngle({ 0.0f, 1.0f, 0.0f }, pi_v);
+
 	//* visual *//
 
 	texture_ = SxavengerAsset::TryImport<Texture>("asset/textures/pattern_camo.jpg").Lock();
@@ -79,6 +81,7 @@ void Enemy::Init() {
 		}
 	);
 
+	isDead_ = false;
 }
 
 void Enemy::Init(const QuaternionTransform& transform) {

@@ -5,6 +5,7 @@
 //-----------------------------------------------------------------------------------------
 //* engine
 #include <Engine/Module/SxavengerModule.h>
+#include <Engine/System/Runtime/Scene/SceneController.h>
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 // SceneGame class methods
@@ -33,6 +34,10 @@ void SceneGame::Update() {
 	enemy_->Update();
 
 	SxavengerModule::CheckCollision();
+
+	if (enemy_->IsDead()) {
+		controller_->RequestNextScene("Title");
+	}
 }
 
 void SceneGame::Draw() {

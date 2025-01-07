@@ -103,7 +103,6 @@ void Player::Term() {
 void Player::Update() {
 	UpdateState();
 
-
 	ModelBehavior::GetTransform().translate.x = std::clamp(ModelBehavior::GetTransform().translate.x, -11.0f, 11.0f);
 	ModelBehavior::GetTransform().translate.z = std::clamp(ModelBehavior::GetTransform().translate.z, -11.0f, 11.0f);
 

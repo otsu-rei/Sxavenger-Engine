@@ -23,6 +23,11 @@ void EnemyStateKnock::Term() {
 void EnemyStateKnock::Update() {
 
 	time_ += SxavengerSystem::GetDeltaTime();
+
+	if (time_ >= duration_) {
+		enemy_->isDead_ = true;
+	}
+
 	time_ = Min(time_, { duration_.time - 0.01f });
 
 	enemy_->time_ = time_;

@@ -68,6 +68,8 @@ public:
 
 	void SetAttributeImGui() override;
 
+	bool IsDead() const { return isDead_; }
+
 private:
 
 	//=========================================================================================
@@ -109,6 +111,8 @@ private:
 	//* collider *//
 
 	std::unique_ptr<Collider> hitCollider_;
+
+	bool isDead_ = false;
 
 	//=========================================================================================
 	// private methods
