@@ -49,11 +49,17 @@ void Player::Init() {
 	animators_[AnimationState::Hooking]  = SxavengerAsset::TryImportPtr<Animator>("asset/model/sample/hooking.gltf").lock();
 	animators_[AnimationState::Elbow]    = SxavengerAsset::TryImportPtr<Animator>("asset/model/sample/elbow.gltf").lock();
 	animators_[AnimationState::Straight] = SxavengerAsset::TryImportPtr<Animator>("asset/model/sample/straight.gltf").lock();
+	animators_[AnimationState::Kick]	 = SxavengerAsset::TryImportPtr<Animator>("asset/model/sample/kick.gltf").lock();
 
-	std::for_each(animators_.begin(), animators_.end(), [](auto& animator) { SxavengerAsset::PushTask(animator); });
-	std::for_each(animators_.begin(), animators_.end(), [](auto& animator) { animator->WaitComplete(); });
+	//std::for_each(animators_.begin(), animators_.end(), [](auto& animator) { SxavengerAsset::PushTask(animator); });
+	//std::for_each(animators_.begin(), animators_.end(), [](auto& animator) { animator->WaitComplete(); });
 
-	animationState_ = AnimationState::Idle;
+	for (size_t i = 0; i < animators_.size(); ++i) {
+		SxavengerAsset::PushTask(animators_[i]);
+		animators_[i]->WaitComplete();
+	}
+
+	//animationState_ = AnimationState::Idle;
 
 	//* collider *//
 
@@ -66,6 +72,7 @@ void Player::Init() {
 	});
 	hitCollider_->SetParent(this);
 	hitCollider_->GetTransform().translate = { 0.0f, 1.0f, 0.0f };
+	hitCollider_->SetTypeId(ColliderType::kPlayer);
 }
 
 void Player::Term() {
@@ -81,6 +88,18 @@ void Player::Update() {
 	//* update skeleton *//
 
 	UpdateAnimation();
+}
+
+void Player::SetAnimationState(AnimationState state) {
+	if (state != animationState_) {
+		prevAnimationState_ = animationState_;
+		prevTime_           = time_;
+
+		animationT_ = 0.0f;
+
+		animationState_ = state;
+		time_           = {};
+	}
 }
 
 void Player::SetAttributeImGui() {
@@ -106,8 +125,19 @@ void Player::UpdateState() {
 }
 
 void Player::UpdateAnimation() {
-	time_ += SxavengerSystem::GetDeltaTime();
-	skeleton_->UpdateAnimation(animators_[animationState_]->GetAnimation(0), time_);
+	if (animationT_ < 1.0f) {
+		animationT_ += SxavengerSystem::GetDeltaTime().time / 0.2f;
+		animationT_ = std::clamp(animationT_, 0.0f, 1.0f);
+
+		skeleton_->UpdateTransitionAnimation(
+			animators_[prevAnimationState_]->GetAnimation(0), prevTime_, true,
+			animators_[animationState_]->GetAnimation(0), time_, true,
+			animationT_
+		);
+
+	} else {
+		skeleton_->UpdateAnimation(animators_[animationState_]->GetAnimation(0), time_);
+	}
 }
 
 void Player::UpdateCamera() {

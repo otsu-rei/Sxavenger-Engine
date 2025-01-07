@@ -1,48 +1,35 @@
 #pragma once
 
 //-----------------------------------------------------------------------------------------
-// include
+// forward
 //-----------------------------------------------------------------------------------------
-//* state
-#include "BasePlayerState.h"
-
-//* engine
-#include <Engine/System/Runtime/Performance/TimePoint.h>
+class Enemy;
 
 ////////////////////////////////////////////////////////////////////////////////////////////
-// PlayerStateRolling class
+// Base EnemyState class
 ////////////////////////////////////////////////////////////////////////////////////////////
-class PlayerStateRolling
-	: public BasePlayerState {
+class BaseEnemyState {
 public:
 
 	//=========================================================================================
 	// public methods
 	//=========================================================================================
 
-	PlayerStateRolling(Player* player) : BasePlayerState(player) {};
-	~PlayerStateRolling() = default;
+	BaseEnemyState(Enemy* enemy) : enemy_(enemy) {}
+	virtual ~BaseEnemyState() = default;
 
-	void Init() override;
+	virtual void Init() = 0;
 
-	void Term() override;
+	virtual void Term() = 0;
 
-	void Update() override;
+	virtual void Update() = 0;
 
-private:
+protected:
 
 	//=========================================================================================
-	// private variables
+	// protected variables
 	//=========================================================================================
 
-	//* time *//
-
-	TimePointf<TimeUnit::second> time_;
-	TimePointf<TimeUnit::second> duration_;
-
-	//* parameter *//
-
-	float speed_ = 5.0f;
-
+	Enemy* enemy_ = nullptr;
 
 };

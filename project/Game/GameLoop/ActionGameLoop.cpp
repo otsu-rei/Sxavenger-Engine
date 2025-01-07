@@ -1,5 +1,11 @@
 #include "ActionGameLoop.h"
 
+//-----------------------------------------------------------------------------------------
+// include
+//-----------------------------------------------------------------------------------------
+//* engine
+#include <Engine/Module/SxavengerModule.h>
+
 ////////////////////////////////////////////////////////////////////////////////////////////
 // ActionGameLoop class
 ////////////////////////////////////////////////////////////////////////////////////////////
@@ -37,6 +43,8 @@ void ActionGameLoop::TermGame() {
 void ActionGameLoop::UpdateGame() {
 	player_->Update();
 	enemy_->Update();
+
+	SxavengerModule::CheckCollision();
 }
 
 void ActionGameLoop::DrawGame() {

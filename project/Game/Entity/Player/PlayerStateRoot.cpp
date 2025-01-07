@@ -35,6 +35,8 @@ void PlayerStateRoot::Update() {
 	}
 
 	player_->GetTransform().rotate = Slerp(player_->GetTransform().rotate, player_->target_, 0.2f);
+
+	player_->time_ += SxavengerSystem::GetDeltaTime();
 }
 
 void PlayerStateRoot::RotateCameraGamepad() {
@@ -76,7 +78,7 @@ void PlayerStateRoot::MoveGamepad() {
 	const float active = std::abs(stick.x) + std::abs(stick.y);
 
 	if (active < deadzone) { //!< deadzoneと実際の入力値を比較
-		player_->animationState_ = Player::AnimationState::Idle; //!< 入力がない場合はidle状態に遷移
+		player_->SetAnimationState(Player::AnimationState::Idle); //!< 入力がない場合はidle状態に遷移
 		return;
 	}
 
@@ -90,11 +92,11 @@ void PlayerStateRoot::MoveGamepad() {
 
 	if (isRun) {
 		player_->GetTransform().translate += direction * runSpeed_ * SxavengerSystem::GetDeltaTime().time;
-		player_->animationState_ = Player::AnimationState::Running;
+		player_->SetAnimationState(Player::AnimationState::Running);
 
 	} else {
 		player_->GetTransform().translate += direction * speed_ * SxavengerSystem::GetDeltaTime().time;
-		player_->animationState_ = Player::AnimationState::Walking;
+		player_->SetAnimationState(Player::AnimationState::Walking);
 	}
 
 	player_->target_ = ToQuaternion(CalculateEuler(direction));

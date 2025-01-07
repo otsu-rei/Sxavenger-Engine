@@ -12,7 +12,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////
 // PlayerStateRolling class
 ////////////////////////////////////////////////////////////////////////////////////////////
-class PlayerStateRolling
+class PlayerStateKick
 	: public BasePlayerState {
 public:
 
@@ -20,8 +20,8 @@ public:
 	// public methods
 	//=========================================================================================
 
-	PlayerStateRolling(Player* player) : BasePlayerState(player) {};
-	~PlayerStateRolling() = default;
+	PlayerStateKick(Player* player) : BasePlayerState(player) {};
+	~PlayerStateKick() = default;
 
 	void Init() override;
 
@@ -40,9 +40,11 @@ private:
 	TimePointf<TimeUnit::second> time_;
 	TimePointf<TimeUnit::second> duration_;
 
-	//* parameter *//
+	//=========================================================================================
+	// private methods
+	//=========================================================================================
 
-	float speed_ = 5.0f;
-
+	void UpdateAnimation();
 
 };
+

@@ -14,11 +14,13 @@ void AsyncAssetThread::Init(const std::function<std::shared_ptr<BaseAsset>()>& g
 
 	DirectXThreadContext::Init(1);
 
-	thread_ = std::thread([this, getter] {
+	getter_ = getter;
+
+	thread_ = std::thread([this] {
 		ThreadLog("[AsyncAssetThread]: Begin thread.");
 
 		while (!isTerm_) {
-			task_ = getter();
+			task_ = getter_();
 			Execute();
 		}
 

@@ -4,24 +4,24 @@
 // include
 //-----------------------------------------------------------------------------------------
 //* state
-#include "BasePlayerState.h"
+#include "BaseEnemyState.h"
 
 //* engine
 #include <Engine/System/Runtime/Performance/TimePoint.h>
 
 ////////////////////////////////////////////////////////////////////////////////////////////
-// PlayerStateRolling class
+// EnemyStateReactionLight class
 ////////////////////////////////////////////////////////////////////////////////////////////
-class PlayerStateRolling
-	: public BasePlayerState {
+class EnemyStateReactionLight
+	: public BaseEnemyState {
 public:
 
 	//=========================================================================================
 	// public methods
 	//=========================================================================================
 
-	PlayerStateRolling(Player* player) : BasePlayerState(player) {};
-	~PlayerStateRolling() = default;
+	EnemyStateReactionLight(Enemy* enemy) : BaseEnemyState(enemy) {};
+	~EnemyStateReactionLight() = default;
 
 	void Init() override;
 
@@ -30,7 +30,6 @@ public:
 	void Update() override;
 
 private:
-
 	//=========================================================================================
 	// private variables
 	//=========================================================================================
@@ -39,10 +38,5 @@ private:
 
 	TimePointf<TimeUnit::second> time_;
 	TimePointf<TimeUnit::second> duration_;
-
-	//* parameter *//
-
-	float speed_ = 5.0f;
-
 
 };

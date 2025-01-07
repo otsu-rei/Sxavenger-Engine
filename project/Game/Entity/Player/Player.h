@@ -11,6 +11,7 @@
 #include "PlayerStateHook.h"
 #include "PlayerStateElbow.h"
 #include "PlayerStateStraight.h"
+#include "PlayerStateKick.h"
 
 //* engine
 #include <Engine/System/Runtime/Input/Input.h>
@@ -42,9 +43,10 @@ public:
 		Punching,
 		Hooking,
 		Elbow,
-		Straight
+		Straight,
+		Kick,
 	};
-	static const uint8_t kAnimationCount = AnimationState::Straight + 1;
+	static const uint8_t kAnimationCount = AnimationState::Kick + 1;
 
 public:
 
@@ -61,7 +63,7 @@ public:
 
 	void Update();
 
-	void SetAnimationState();
+	void SetAnimationState(AnimationState state);
 
 	void SetAttributeImGui() override;
 
@@ -86,9 +88,14 @@ private:
 	//* animation *//
 
 	std::array<std::shared_ptr<Animator>, kAnimationCount> animators_;
-	AnimationState animationState_ = AnimationState::Idle;
 
+	AnimationState animationState_ = AnimationState::Idle;
 	TimePointf<TimeUnit::second> time_;
+
+	AnimationState prevAnimationState_ = AnimationState::Idle;
+	TimePointf<TimeUnit::second> prevTime_;
+
+	float animationT_ = 1.0f;
 
 	std::unique_ptr<SkeletonMesh> skeleton_;
 
@@ -97,7 +104,7 @@ private:
 	Vector3f pivot_ = kOrigin3<float>;
 	Vector2f pivotRotation_ = {}; //!< x: lon, y: lat
 
-	float distance_ = 8.0f;
+	float distance_ = 6.0f;
 
 	Vector3f offset_ = { 0.0f, 1.0f, 0.0f };
 
@@ -127,4 +134,5 @@ public:
 	friend PlayerStateHook;
 	friend PlayerStateElbow;
 	friend PlayerStateStraight;
+	friend PlayerStateKick;
 };

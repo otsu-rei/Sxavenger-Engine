@@ -49,6 +49,7 @@ private:
 
 	//* task *//
 
+	std::function<std::shared_ptr<BaseAsset>()> getter_ = nullptr;
 	std::shared_ptr<BaseAsset> task_ = nullptr;
 
 	//* parameter *//

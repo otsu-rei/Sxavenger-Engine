@@ -12,6 +12,15 @@
 
 void PlayerStatePunch::Init() {
 	duration_ = player_->animators_[Player::AnimationState::Punching]->GetDurationTime(0);
+	player_->SetAnimationState(Player::AnimationState::Punching);
+
+	attackCollider_ = std::make_unique<Collider>();
+	attackCollider_->SetToCollection();
+	attackCollider_->SetTypeId(ColliderType::kPlayerAttack);
+	attackCollider_->SetColliderBoundingSphere({ 0.4f });
+	attackCollider_->SetParent(player_);
+	attackCollider_->GetTransform().translate = { 0.0f, 1.2f, 0.8f };
+	attackCollider_->UpdateMatrix();
 }
 
 void PlayerStatePunch::Term() {
@@ -47,9 +56,8 @@ void PlayerStatePunch::ActionGamepad() {
 }
 
 void PlayerStatePunch::UpdateAnimation() {
-	time_ += TimePointf<TimeUnit::second>(SxavengerSystem::GetDeltaTime());
+	time_ += SxavengerSystem::GetDeltaTime().time * 1.4f;
 
 	//* player側に設定
 	player_->time_ = time_;
-	player_->animationState_ = Player::AnimationState::Punching;
 }

@@ -38,7 +38,7 @@ private:
 	//* paraemter *//
 
 	float speed_    = 1.0f;
-	float runSpeed_ = 3.0f;
+	float runSpeed_ = 4.0f;
 
 	Vector2f rotationDelta_ = { 0.02f, 0.01f };
 

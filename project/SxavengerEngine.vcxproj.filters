@@ -139,6 +139,11 @@
     <ClCompile Include="Game\Entity\Player\PlayerStateHook.cpp" />
     <ClCompile Include="Game\Entity\Player\PlayerStateElbow.cpp" />
     <ClCompile Include="Game\Entity\Player\PlayerStateStraight.cpp" />
+    <ClCompile Include="Game\Entity\Player\PlayerStateKick.cpp" />
+    <ClCompile Include="Game\Entity\Enemy\EnemyStateRoot.cpp" />
+    <ClCompile Include="Game\Entity\Enemy\BaseEnemyState.cpp" />
+    <ClCompile Include="Game\Entity\Enemy\EnemyStateReactionLight.cpp" />
+    <ClCompile Include="Game\Entity\Enemy\EnemyStateReactionHeavy.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\System\Window\Window.h" />
@@ -283,5 +288,11 @@
     <ClInclude Include="Game\Entity\Player\PlayerStateHook.h" />
     <ClInclude Include="Game\Entity\Player\PlayerStateElbow.h" />
     <ClInclude Include="Game\Entity\Player\PlayerStateStraight.h" />
+    <ClInclude Include="Game\Entity\Player\PlayerStateKick.h" />
+    <ClInclude Include="Game\Entity\Enemy\EnemyStateRoot.h" />
+    <ClInclude Include="Game\Entity\Enemy\BaseEnemyState.h" />
+    <ClInclude Include="Game\Entity\Enemy\EnemyStateReactionLight.h" />
+    <ClInclude Include="Game\Entity\Player\PlayerAttackCollider.h" />
+    <ClInclude Include="Game\Entity\Enemy\EnemyStateReactionHeavy.h" />
   </ItemGroup>
 </Project>

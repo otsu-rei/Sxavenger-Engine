@@ -44,6 +44,8 @@ void Skeleton::TransitionAnimation(
 		timeB = Mod(timeB, animationB.duration);
 	}
 
+	t = std::clamp(t, 0.0f, 1.0f);
+
 	ApplyTransitionAnimation(
 		animationA, timeA,
 		animationB, timeB,

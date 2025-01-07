@@ -13,6 +13,7 @@
 void PlayerStateRolling::Init() {
 	duration_ = player_->animators_[Player::AnimationState::Rolling]->GetDurationTime(0);
 	player_->hitCollider_->SetIsActive(false);
+	player_->SetAnimationState(Player::AnimationState::Rolling);
 }
 
 void PlayerStateRolling::Term() {
@@ -21,11 +22,10 @@ void PlayerStateRolling::Term() {
 }
 
 void PlayerStateRolling::Update() {
-	time_ += TimePointf<TimeUnit::second>(SxavengerSystem::GetDeltaTime());
+	time_ += SxavengerSystem::GetDeltaTime();
 
 	//* player側に設定
 	player_->time_ = time_;
-	player_->animationState_ = Player::AnimationState::Rolling;
 
 	if (time_ >= duration_) {
 		player_->requestState_ = std::make_unique<PlayerStateRoot>(player_);
