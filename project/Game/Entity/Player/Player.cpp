@@ -7,6 +7,8 @@
 #include <Engine/System/SxavengerSystem.h>
 #include <Engine/Asset/SxavengerAsset.h>
 #include <Engine/Console/Console.h>
+#include <Engine/Module/SxavengerGraphics/SxavGraphicsFrame.h>
+#include <Engine/Module/SxavengerModule.h>
 
 //* lib
 #include <Lib/MyMath.h>
@@ -30,6 +32,7 @@ void Player::Init() {
 
 	ModelBehavior::SetName("player");
 	ModelBehavior::SetRenderingFlag(BehaviorRenderingType::kSystematic);
+	ModelBehavior::SetRenderingFlag(BehaviorRenderingType::kLateAdaptive);
 
 	ModelBehavior::model_ = SxavengerAsset::TryImport<Model>("asset/model/sample/idle.gltf");
 	SxavengerAsset::PushTask(ModelBehavior::model_.value().Lock());
@@ -80,6 +83,10 @@ void Player::Init() {
 	dof_->GetParameter().focusLength = 5.0f;
 
 
+	texture_ = SxavengerAsset::TryImport<Texture>("asset/textures/ui.png").Lock();
+	SxavengerAsset::PushTask(texture_);
+	texture_->WaitComplete();
+
 }
 
 void Player::Init(const QuaternionTransform& transform) {
@@ -95,6 +102,10 @@ void Player::Term() {
 
 void Player::Update() {
 	UpdateState();
+
+
+	ModelBehavior::GetTransform().translate.x = std::clamp(ModelBehavior::GetTransform().translate.x, -11.0f, 11.0f);
+	ModelBehavior::GetTransform().translate.z = std::clamp(ModelBehavior::GetTransform().translate.z, -11.0f, 11.0f);
 
 	ModelBehavior::UpdateMatrix();
 	hitCollider_->UpdateMatrix();
@@ -122,6 +133,12 @@ void Player::SetAttributeImGui() {
 		hitCollider_->SetImGuiCommand();
 		ImGui::TreePop();
 	}
+}
+
+void Player::DrawLateAdaptive(_MAYBE_UNUSED const SxavGraphicsFrame* frame) {
+	SxavengerModule::GetSpriteCommon()->DrawSprite(
+		{}, kMainWindowSize, texture_->GetGPUHandleSRV()
+	);
 }
 
 void Player::UpdateState() {

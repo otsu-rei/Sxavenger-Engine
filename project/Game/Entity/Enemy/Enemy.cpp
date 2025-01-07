@@ -91,6 +91,9 @@ void Enemy::Init(const QuaternionTransform& transform) {
 void Enemy::Update() {
 	UpdateState();
 
+	AnimationBehavior::GetTransform().translate.x = std::clamp(AnimationBehavior::GetTransform().translate.x, -12.0f, 12.0f);
+	AnimationBehavior::GetTransform().translate.z = std::clamp(AnimationBehavior::GetTransform().translate.z, -12.0f, 12.0f);
+
 	AnimationBehavior::UpdateMatrix();
 	hitCollider_->UpdateMatrix();
 

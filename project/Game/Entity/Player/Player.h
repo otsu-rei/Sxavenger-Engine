@@ -67,6 +67,8 @@ public:
 
 	void SetAttributeImGui() override;
 
+	void DrawLateAdaptive(_MAYBE_UNUSED const SxavGraphicsFrame* frame) override;
+
 private:
 
 	//=========================================================================================
@@ -117,6 +119,8 @@ private:
 	//* visual
 
 	std::unique_ptr<VisualDoF> dof_;
+
+	std::shared_ptr<Texture> texture_ = nullptr;
 
 	//=========================================================================================
 	// private methods

@@ -21,8 +21,8 @@ void Ground::Init() {
 
 	float scale = 12.0f;
 
-	ModelBehavior::GetTransform().scale = { scale, 0.1f, scale };
-	ModelBehavior::GetTransform().translate = { 0.0f, -0.1f, 0.0f };
+	ModelBehavior::GetTransform().scale = { scale, scale, scale };
+	ModelBehavior::GetTransform().translate = { 0.0f, -12.0f, 0.0f };
 	ModelBehavior::UpdateMatrix();
 
 	ModelBehavior::MaterialComponent::uvTransform_.scale = { scale * 2, scale * 2 };
