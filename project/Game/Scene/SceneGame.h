@@ -3,24 +3,36 @@
 //-----------------------------------------------------------------------------------------
 // include
 //-----------------------------------------------------------------------------------------
-//* base
-#include <Engine/System/Runtime/GameLoop/GameLoop.h>
+//* engine
+#include <Engine/System/Runtime/Scene/BaseScene.h>
 
 //* game
-#include "Engine/System/Runtime/Scene/SceneController.h"
+#include "../Entity/Player/Player.h"
+#include "../Entity/Enemy/Enemy.h"
+#include "../Object/Ground.h"
+
+//* c++
+#include <memory>
 
 ////////////////////////////////////////////////////////////////////////////////////////////
-// ActionGameLoop class
+// SceneGame class
 ////////////////////////////////////////////////////////////////////////////////////////////
-class ActionGameLoop
-	: public GameLoop::Interface {
+class SceneGame
+	: public BaseScene {
 public:
 
 	//=========================================================================================
-	// public method
+	// public methods
 	//=========================================================================================
 
-	void Init(GameLoop::Context* context) override;
+	SceneGame() = default;
+	~SceneGame() = default;
+
+	void Init() override;
+
+	void Update() override;
+
+	void Draw() override;
 
 	void Term() override;
 
@@ -30,18 +42,10 @@ private:
 	// private variables
 	//=========================================================================================
 
-	std::unique_ptr<SceneController> collection_;
+	std::unique_ptr<Player> player_;
 
-	//=========================================================================================
-	// private method
-	//=========================================================================================
+	std::unique_ptr<Enemy> enemy_;
 
-	void InitGame();
-
-	void TermGame();
-
-	void UpdateGame();
-
-	void DrawGame();
+	std::unique_ptr<Ground> ground_;
 
 };

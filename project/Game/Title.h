@@ -3,45 +3,34 @@
 //-----------------------------------------------------------------------------------------
 // include
 //-----------------------------------------------------------------------------------------
-//* base
-#include <Engine/System/Runtime/GameLoop/GameLoop.h>
-
-//* game
-#include "Engine/System/Runtime/Scene/SceneController.h"
+//* engine
+#include <Engine/Module/Behavior/BaseBehavior.h>
+#include <Engine/Asset/SxavengerAsset.h>
 
 ////////////////////////////////////////////////////////////////////////////////////////////
-// ActionGameLoop class
+// Title class
 ////////////////////////////////////////////////////////////////////////////////////////////
-class ActionGameLoop
-	: public GameLoop::Interface {
+class Title
+	: public BaseBehavior {
 public:
 
 	//=========================================================================================
-	// public method
+	// public methods
 	//=========================================================================================
 
-	void Init(GameLoop::Context* context) override;
+	Title() = default;
+	~Title() = default;
 
-	void Term() override;
+	void Init();
 
-private:
+	void DrawLateAdaptive(_MAYBE_UNUSED const SxavGraphicsFrame* frame);
+
+public:
 
 	//=========================================================================================
 	// private variables
 	//=========================================================================================
 
-	std::unique_ptr<SceneController> collection_;
-
-	//=========================================================================================
-	// private method
-	//=========================================================================================
-
-	void InitGame();
-
-	void TermGame();
-
-	void UpdateGame();
-
-	void DrawGame();
+	std::shared_ptr<Texture> texture_;
 
 };

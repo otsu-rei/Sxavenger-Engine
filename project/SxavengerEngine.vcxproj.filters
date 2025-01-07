@@ -147,6 +147,10 @@
     <ClCompile Include="Game\Entity\Enemy\EnemyStateApproach.cpp" />
     <ClCompile Include="Game\Entity\Enemy\EnemyStateStraight.cpp" />
     <ClCompile Include="Game\Entity\Enemy\EnemyCollection.cpp" />
+    <ClCompile Include="Engine\Module\Sprite\Sprite.cpp" />
+    <ClCompile Include="Game\Scene\SceneGame.cpp" />
+    <ClCompile Include="Game\Scene\SceneTitle.cpp" />
+    <ClCompile Include="Game\Title.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\System\Window\Window.h" />
@@ -300,5 +304,9 @@
     <ClInclude Include="Game\Entity\Enemy\EnemyStateApproach.h" />
     <ClInclude Include="Game\Entity\Enemy\EnemyStateStraight.h" />
     <ClInclude Include="Game\Entity\Enemy\EnemyCollection.h" />
+    <ClInclude Include="Engine\Module\Sprite\Sprite.h" />
+    <ClInclude Include="Game\Scene\SceneGame.h" />
+    <ClInclude Include="Game\Scene\SceneTitle.h" />
+    <ClInclude Include="Game\Title.h" />
   </ItemGroup>
 </Project>

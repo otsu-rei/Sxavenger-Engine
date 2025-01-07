@@ -3,24 +3,31 @@
 //-----------------------------------------------------------------------------------------
 // include
 //-----------------------------------------------------------------------------------------
-//* base
-#include <Engine/System/Runtime/GameLoop/GameLoop.h>
+//* engine
+#include <Engine/System/Runtime/Scene/BaseScene.h>
 
 //* game
-#include "Engine/System/Runtime/Scene/SceneController.h"
+#include "../Title.h"
 
 ////////////////////////////////////////////////////////////////////////////////////////////
-// ActionGameLoop class
+// SceneGame class
 ////////////////////////////////////////////////////////////////////////////////////////////
-class ActionGameLoop
-	: public GameLoop::Interface {
+class SceneTitle
+	: public BaseScene {
 public:
 
 	//=========================================================================================
-	// public method
+	// public methods
 	//=========================================================================================
 
-	void Init(GameLoop::Context* context) override;
+	SceneTitle() = default;
+	~SceneTitle() = default;
+
+	void Init() override;
+
+	void Update() override;
+
+	void Draw() override;
 
 	void Term() override;
 
@@ -30,18 +37,6 @@ private:
 	// private variables
 	//=========================================================================================
 
-	std::unique_ptr<SceneController> collection_;
-
-	//=========================================================================================
-	// private method
-	//=========================================================================================
-
-	void InitGame();
-
-	void TermGame();
-
-	void UpdateGame();
-
-	void DrawGame();
+	std::unique_ptr<Title> title_;
 
 };

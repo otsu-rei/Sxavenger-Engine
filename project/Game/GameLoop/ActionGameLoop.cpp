@@ -6,6 +6,10 @@
 //* engine
 #include <Engine/Module/SxavengerModule.h>
 
+//* other scene
+#include "../Scene/SceneGame.h"
+#include "../Scene/SceneTitle.h"
+
 ////////////////////////////////////////////////////////////////////////////////////////////
 // ActionGameLoop class
 ////////////////////////////////////////////////////////////////////////////////////////////
@@ -21,35 +25,25 @@ void ActionGameLoop::Term() {
 }
 
 void ActionGameLoop::InitGame() {
-	player_ = std::make_unique<Player>();
 
-	QuaternionTransform transform = {};
-	transform.translate = { 0.0f, 0.0f, -8.0f };
-	transform.rotate = Quaternion::Identity();
-	player_->Init(transform);
-	player_->SetToConsole();
+	std::unique_ptr<BaseSceneFactory> factory = std::make_unique<BaseSceneFactory>();
+	factory->Register<SceneGame>("Game");
+	factory->Register<SceneTitle>("Title");
 
-	enemy_ = std::make_unique<Enemy>();
-	enemy_->Init();
-	enemy_->SetToConsole();
-
-	ground_ = std::make_unique<Ground>();
-	ground_->Init();
-	ground_->SetToConsole();
+	collection_ = std::make_unique<SceneController>();
+	collection_->SetSceneFactory(std::move(factory));
+	collection_->Init("Title");
 }
 
 void ActionGameLoop::TermGame() {
-	player_.reset();
-	enemy_.reset();
-	ground_.reset();
+	collection_.reset();
 }
 
 void ActionGameLoop::UpdateGame() {
-	player_->Update();
-	enemy_->Update();
-
-	SxavengerModule::CheckCollision();
+	collection_->ActivateNextScene();
+	collection_->UpdateScene();
 }
 
 void ActionGameLoop::DrawGame() {
+	collection_->DrawScene();
 }
