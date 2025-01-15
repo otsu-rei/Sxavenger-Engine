@@ -132,7 +132,7 @@ private:
 ////////////////////////////////////////////////////////////////////////////////////////////
 // IndexDimensionBuffer class
 ////////////////////////////////////////////////////////////////////////////////////////////
-class IndexDimensionBuffer
+class IndexDimensionBuffer //!< point index buffer
 	: public DimensionBuffer<UINT> {
 public:
 
@@ -143,6 +143,35 @@ public:
 	const D3D12_INDEX_BUFFER_VIEW GetIndexBufferView() const;
 
 private:
+};
+
+////////////////////////////////////////////////////////////////////////////////////////////
+// LineIndexDimensionBuffer class
+////////////////////////////////////////////////////////////////////////////////////////////
+class LineIndexDimensionBuffer //!< line index buffer
+	: public DimensionBuffer<std::pair<UINT, UINT>> {
+public:
+
+	//=========================================================================================
+	// public methods
+	//=========================================================================================
+
+	const D3D12_INDEX_BUFFER_VIEW GetIndexBufferView() const;
+
+};
+
+////////////////////////////////////////////////////////////////////////////////////////////
+// TriangleIndexDimensionBuffer class
+////////////////////////////////////////////////////////////////////////////////////////////
+class TriangleIndexDimensionBuffer //!< triangle index buffer
+	: public DimensionBuffer<std::tuple<UINT, UINT, UINT>> {
+public:
+
+	//=========================================================================================
+	// public methods
+	//=========================================================================================
+
+	const D3D12_INDEX_BUFFER_VIEW GetIndexBufferView() const;
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////

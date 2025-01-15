@@ -49,11 +49,30 @@ bool BaseDimensionBuffer::CheckIndex(uint32_t index) {
 	return true;
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////
+// IndexDimensionBuffer class methods
+////////////////////////////////////////////////////////////////////////////////////////////
+
 const D3D12_INDEX_BUFFER_VIEW IndexDimensionBuffer::GetIndexBufferView() const {
 	D3D12_INDEX_BUFFER_VIEW result = {};
 	result.Format         = DXGI_FORMAT_R32_UINT;
 	result.BufferLocation = GetGPUVirtualAddress();
-	result.SizeInBytes    = stride_ * size_;
+	result.SizeInBytes    = stride_ * size_ * 1;
+	return result;
+}
 
+const D3D12_INDEX_BUFFER_VIEW LineIndexDimensionBuffer::GetIndexBufferView() const {
+	D3D12_INDEX_BUFFER_VIEW result = {};
+	result.Format         = DXGI_FORMAT_R32_UINT;
+	result.BufferLocation = GetGPUVirtualAddress();
+	result.SizeInBytes    = stride_ * size_ * 2;
+	return result;
+}
+
+const D3D12_INDEX_BUFFER_VIEW TriangleIndexDimensionBuffer::GetIndexBufferView() const {
+	D3D12_INDEX_BUFFER_VIEW result = {};
+	result.Format         = DXGI_FORMAT_R32_UINT;
+	result.BufferLocation = GetGPUVirtualAddress();
+	result.SizeInBytes    = stride_ * size_ * 3;
 	return result;
 }
