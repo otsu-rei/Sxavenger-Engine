@@ -69,6 +69,8 @@ public:
 
 	void DrawLateAdaptive(_MAYBE_UNUSED const SxavGraphicsFrame* frame) override;
 
+	void SetShake(TimePointf<TimeUnit::second> time, const Vector2f& strength);
+
 private:
 
 	//=========================================================================================
@@ -111,6 +113,12 @@ private:
 	Vector3f offset_ = { 0.0f, 1.0f, 0.0f };
 
 	Quaternion target_ = Quaternion::Identity();
+
+	TimePointf<TimeUnit::second> shakeTime_  = {};
+	TimePointf<TimeUnit::second> shakeTimer_ = {};
+
+	Vector2f strength_ = {};
+
 
 	//* collider *//
 

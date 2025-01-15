@@ -12,6 +12,7 @@
 
 //* lib
 #include <Lib/MyMath.h>
+#include <Lib/Adapter/Random/Random.h>
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 // Player class methods
@@ -140,6 +141,13 @@ void Player::DrawLateAdaptive(_MAYBE_UNUSED const SxavGraphicsFrame* frame) {
 	);
 }
 
+void Player::SetShake(TimePointf<TimeUnit::second> time, const Vector2f& strength) {
+	shakeTime_  = time;
+	shakeTimer_ = {};
+
+	strength_ = strength;
+}
+
 void Player::UpdateState() {
 	//!< apply request state
 	if (requestState_.has_value()) {
@@ -183,7 +191,28 @@ void Player::UpdateCamera() {
 	static const Vector3f direction = { 0.0f, 0.0f, -1.0f };
 	Vector3f rotatedDirection = RotateVector(direction, rotate);
 
-	camera_->GetTransform().translate = pivot_ + rotatedDirection * distance_ + offset_;
-	camera_->GetTransform().rotate    = rotate;
+	QuaternionTransform transform = {};
+	transform.translate = pivot_ + rotatedDirection * distance_ + offset_;
+	transform.rotate    = rotate;
+
+	//* カメラシェイクの処理
+
+	if (shakeTimer_ < shakeTime_) {
+		shakeTimer_ += SxavengerSystem::GetDeltaTime();
+
+		float t = std::lerp(1.0f, 0.0f, shakeTimer_.time / shakeTime_.time);
+		t = std::clamp(t, 0.0f, 1.0f);
+
+		Vector3f shake = {
+			Random::Generate(-strength_.x, strength_.x) * t,
+			Random::Generate(-strength_.y, strength_.y) * t,
+			0.0f
+		};
+
+		shake = RotateVector(shake, rotate);
+		transform.translate += shake;
+	}
+
+	camera_->GetTransform() = transform;
 	camera_->UpdateMatrix();
 }

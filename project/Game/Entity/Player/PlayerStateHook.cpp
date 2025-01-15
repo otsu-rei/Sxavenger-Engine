@@ -17,11 +17,15 @@ void PlayerStateHook::Init() {
 	attackCollider_ = std::make_unique<PlayerAttackCollider>();
 	attackCollider_->SetToCollection();
 	attackCollider_->SetTypeId(ColliderType::kPlayerAttack);
+	attackCollider_->SetTargetId(ColliderType::kEnemy);
 	attackCollider_->SetColliderBoundingSphere({ 0.4f });
 	attackCollider_->SetParent(player_);
 	attackCollider_->GetTransform().translate = { 0.0f, 1.2f, 0.8f };
 	attackCollider_->UpdateMatrix();
 	attackCollider_->strength_ = AttackStrength::Light;
+	attackCollider_->SetOnCollisionEnter([this](_MAYBE_UNUSED Collider* const) {
+		player_->SetShake(0.1f, { 0.2f, 0.1f });
+	});
 
 }
 
