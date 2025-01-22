@@ -84,7 +84,6 @@
     <ClCompile Include="Engine\Module\Collider\ColliderCollection.cpp" />
     <ClCompile Include="Lib\Sxl\Formatter.cpp" />
     <ClCompile Include="Engine\Console\RenderConsole\Outliner.cpp" />
-    <ClCompile Include="Engine\Adapter\Particle\BaseParticle.cpp" />
     <ClCompile Include="Lib\Adapter\Curve\Curve.cpp" />
     <ClCompile Include="Engine\System\DirectX\DxObject\DxShaderBlob.cpp" />
     <ClCompile Include="Engine\System\DirectX\DxObject\DxGraphicsPipelineState.cpp" />
@@ -151,6 +150,8 @@
     <ClCompile Include="Game\Scene\SceneGame.cpp" />
     <ClCompile Include="Game\Scene\SceneTitle.cpp" />
     <ClCompile Include="Game\Title.cpp" />
+    <ClCompile Include="Game\Particle\DemoHitParticle.cpp" />
+    <ClCompile Include="Engine\Adapter\Particle\Emitter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\System\Window\Window.h" />
@@ -240,7 +241,6 @@
     <ClInclude Include="Engine\Module\Collider\ColliderCollection.h" />
     <ClInclude Include="Lib\Sxl\Formatter.h" />
     <ClInclude Include="Engine\Console\RenderConsole\Outliner.h" />
-    <ClInclude Include="Engine\Adapter\Particle\BaseParticle.h" />
     <ClInclude Include="Lib\Adapter\Curve\Curve.h" />
     <ClInclude Include="Engine\System\DirectX\DxObject\DxShaderBlob.h" />
     <ClInclude Include="Engine\System\DirectX\DxObject\DxGraphicsPipelineState.h" />
@@ -308,5 +308,7 @@
     <ClInclude Include="Game\Scene\SceneGame.h" />
     <ClInclude Include="Game\Scene\SceneTitle.h" />
     <ClInclude Include="Game\Title.h" />
+    <ClInclude Include="Game\Particle\DemoHitParticle.h" />
+    <ClInclude Include="Engine\Adapter\Particle\Emitter.h" />
   </ItemGroup>
 </Project>

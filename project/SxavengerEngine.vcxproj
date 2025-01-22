@@ -138,7 +138,7 @@ copy "$(SolutionDir)externals\assimp\lib\Release\assimp-vc143-mt.dll" "$(TargetD
     <ClCompile Include="Demo\GameLoop\DemoGameLoop.cpp" />
     <ClCompile Include="Demo\Objects\ChessBoard.cpp" />
     <ClCompile Include="Demo\Objects\DemoHuman.cpp" />
-    <ClCompile Include="Engine\Adapter\Particle\BaseParticle.cpp" />
+    <ClCompile Include="Engine\Adapter\Particle\Emitter.cpp" />
     <ClCompile Include="Engine\Asset\AssetCollection.cpp" />
     <ClCompile Include="Engine\Asset\AssetObserver.cpp" />
     <ClCompile Include="Engine\Asset\BaseAsset.cpp" />
@@ -254,6 +254,7 @@ copy "$(SolutionDir)externals\assimp\lib\Release\assimp-vc143-mt.dll" "$(TargetD
     <ClCompile Include="Game\Entity\Player\PlayerStateRoot.cpp" />
     <ClCompile Include="Game\GameLoop\ActionGameLoop.cpp" />
     <ClCompile Include="Game\Object\Ground.cpp" />
+    <ClCompile Include="Game\Particle\DemoHitParticle.cpp" />
     <ClCompile Include="Game\Scene\SceneGame.cpp" />
     <ClCompile Include="Game\Scene\SceneTitle.cpp" />
     <ClCompile Include="Game\Title.cpp" />
@@ -282,7 +283,7 @@ copy "$(SolutionDir)externals\assimp\lib\Release\assimp-vc143-mt.dll" "$(TargetD
     <ClInclude Include="Demo\GameLoop\DemoGameLoop.h" />
     <ClInclude Include="Demo\Objects\ChessBoard.h" />
     <ClInclude Include="Demo\Objects\DemoHuman.h" />
-    <ClInclude Include="Engine\Adapter\Particle\BaseParticle.h" />
+    <ClInclude Include="Engine\Adapter\Particle\Emitter.h" />
     <ClInclude Include="Engine\Asset\AssetCollection.h" />
     <ClInclude Include="Engine\Asset\AssetObserver.h" />
     <ClInclude Include="Engine\Asset\BaseAsset.h" />
@@ -407,6 +408,7 @@ copy "$(SolutionDir)externals\assimp\lib\Release\assimp-vc143-mt.dll" "$(TargetD
     <ClInclude Include="Game\Entity\Player\PlayerStateRoot.h" />
     <ClInclude Include="Game\GameLoop\ActionGameLoop.h" />
     <ClInclude Include="Game\Object\Ground.h" />
+    <ClInclude Include="Game\Particle\DemoHitParticle.h" />
     <ClInclude Include="Game\Scene\SceneGame.h" />
     <ClInclude Include="Game\Scene\SceneTitle.h" />
     <ClInclude Include="Game\Title.h" />

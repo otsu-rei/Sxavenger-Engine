@@ -37,6 +37,8 @@ public:
 
 	void Update() override;
 
+	void ImGuiCommand() override;
+
 private:
 
 	//=========================================================================================

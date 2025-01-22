@@ -46,6 +46,10 @@ void PlayerStateElbow::Update() {
 	}
 }
 
+void PlayerStateElbow::ImGuiCommand() {
+
+}
+
 void PlayerStateElbow::ActionGamepad() {
 	if (!player_->gamepad_->IsConnect()) {
 		return; //!< gamepadが接続されていない

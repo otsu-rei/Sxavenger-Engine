@@ -3,60 +3,42 @@
 //-----------------------------------------------------------------------------------------
 // include
 //-----------------------------------------------------------------------------------------
-//* base
-#include <Engine/Module/Behavior/TransformBehavior.h>
-
 //* engine
-#include <Engine/System/Runtime/Performance/DeltaTimePoint.h>
+#include <Engine/Module/TransformComponent/TransformComponent.h>
 
-//* particle
-#include "BaseParticle.h"
+//* lib
+#include <Lib/Geometry/Vector3.h>
 
 ////////////////////////////////////////////////////////////////////////////////////////////
-// Emitter class
+// Interface Emitter class
 ////////////////////////////////////////////////////////////////////////////////////////////
-class Emitter
-	: public TransformBehavior {
+class IEmitter
+	: public TransformComponent {
 public:
 
 	//=========================================================================================
 	// public methods
 	//=========================================================================================
 
-	Emitter()  = default;
-	~Emitter() = default;
+	IEmitter()          = default;
+	virtual ~IEmitter() = default;
 
-	void Init();
-
-	void Term();
-
-	void Update();
-
-	void SetAttributeImGui() override;
-
-	virtual void DrawLateAdaptive(_MAYBE_UNUSED const SxavGraphicsFrame* frame) override;
-
-	//* setter *//
-
-	void SetParticle(BaseParticle* particle) { particle_ = particle; }
+	virtual Vector3f Emit() const = 0;
 
 private:
+};
 
-	//=========================================================================================
-	// private variables
-	//=========================================================================================
+// vvv sample emitter vvv
 
-	//* external
+////////////////////////////////////////////////////////////////////////////////////////////
+//
+////////////////////////////////////////////////////////////////////////////////////////////
 
-	BaseParticle* particle_ = nullptr;
+class AABBEmitter
+	: public IEmitter {
+public:
 
-	//* AABB emitter
-	Vector3f min_ = { -1.0f, -1.0f, -1.0f };
-	Vector3f max_ = { 1.0f, 1.0f, 1.0f };
 
-	DeltaTimePoint<TimeUnit::s> emitTime_ = { 0.2f };
-	DeltaTimePoint<TimeUnit::s> emitTimer_;
 
-	uint32_t emitCount_ = 1;
-
+private:
 };
