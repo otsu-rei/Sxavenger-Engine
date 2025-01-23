@@ -173,7 +173,7 @@ void GraphicsRootSignatureDesc::SetHandleUAV(uint32_t index, ShaderVisibility st
 }
 
 ComPtr<ID3D12RootSignature> GraphicsRootSignatureDesc::CreateGraphicsRootSignature(ID3D12Device* device) const {
-	return BaseRootSignatureDesc::CreateRootSignature(device, D3D12_ROOT_SIGNATURE_FLAG_ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT);
+	return BaseRootSignatureDesc::CreateRootSignature(device, D3D12_ROOT_SIGNATURE_FLAG_ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT | D3D12_ROOT_SIGNATURE_FLAG_CBV_SRV_UAV_HEAP_DIRECTLY_INDEXED);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////

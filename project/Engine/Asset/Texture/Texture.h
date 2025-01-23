@@ -40,6 +40,9 @@ public:
 
 	const DXGI_FORMAT GetFormat() const { return format_; }
 
+	//!< TEST
+	const DxObject::Descriptor& GetDescriptor() const { return descriptorSRV_; }
+
 private:
 
 	//=========================================================================================

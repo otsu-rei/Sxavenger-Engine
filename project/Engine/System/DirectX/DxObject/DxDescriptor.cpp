@@ -30,6 +30,10 @@ const D3D12_GPU_DESCRIPTOR_HANDLE& Descriptor::GetGPUHandle() const {
 	return handles_.second.value();
 }
 
+uint32_t Descriptor::GetIndex() const {
+	return index_;
+}
+
 void Descriptor::Reset() {
 	type_  = std::nullopt;
 	index_ = {};
